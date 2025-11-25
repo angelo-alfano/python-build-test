@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "samplepkg"
-version = "0.1.0"
+version = "0.1"
 description = "A simple test package for CI/CD with Poetry."
 authors = ["Angelo Alfano"]
 readme = "README.md"
