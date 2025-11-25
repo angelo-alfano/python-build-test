@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pip install poetry
+          pip install poetry==1.8.3
       - name: Configure poetry virtualenv behavior
         run: |
           poetry config virtualenvs.in-project true
