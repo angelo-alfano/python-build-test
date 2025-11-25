@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "samplepkg"
+name = "samplepkg-htfacility"
 version = "0.1.0"
 description = "A simple test package for CI/CD with Poetry."
 authors = ["Angelo Alfano"]
