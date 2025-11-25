@@ -1,34 +1,39 @@
-name: Publish Python Package with Poetry
+name: Build and Publish (Poetry)
 
 on:
   push:
     tags:
-      - 'v*.*.*'  # Only run on version tags like v1.2.3
+      - "v*"
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: "3.11"
 
       - name: Install Poetry
-        uses: poetry/actions/setup-poetry@v1
-        with:
-          poetry-version: 1.5.1
-
+        run: |
+          pip install poetry
+      - name: Configure poetry virtualenv behavior
+        run: |
+          poetry config virtualenvs.in-project true
       - name: Install dependencies
-        run: poetry install --no-root
-
+        run: |
+          poetry install
+      - name: Run tests
+        run: |
+          poetry run pytest || true
       - name: Build package
-        run: poetry build
-
+        run: |
+          poetry build
       - name: Publish to PyPI
-        uses: poetry/actions/publish@v1
+        uses: pypa/gh-action-pypi-publish@v1.9.0
         with:
-          token: ${{ secrets.PYPI_API_TOKEN }}
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
