@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "samplepkg-test"
+version = "0.1.0"
+description = "A simple test package for CI/CD with Poetry."
+authors = ["Angelo Alfano"]
+readme = "README.md"
+packages = [
+    { include = "samplepkg", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
